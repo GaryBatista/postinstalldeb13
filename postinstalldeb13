@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Vérification des mises à jours, et installation des tous les outils essentiels selon Thomas
+apt update && apt upgrade -y
+apt install -y ssh zip unzip nmap locate ncdu curl git screen dnsutils net-tools sudo lynx
+updatedb
+apt install -y winbind samba
+
+
+# Modification du fichier /etc/nsswitch.conf : on écrase par contenu du echo le fichier
+echo "
+# /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the 'glibc-doc-reference' and 'info' packages installed, try:
+# 'info libc "Name Service Switch"' for information about this file.
+
+passwd:         files systemd
+group:          files systemd
+shadow:         files systemd
+gshadow:        files systemd
+
+hosts:          files dns wins
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis" > /etc/nsswitch.conf
+
+
+# Personnalisation du fichier .bashrc
+echo "
+export LS_OPTIONS='--color=auto'
+eval "$(dircolors)"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'" >> /root/.bashrc
+
+
+# Commandes pour Webmin
+curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
+echo "y" | sh webmin-setup-repo.sh
+apt update
+apt install webmin --install-recommends -y
+
+reboot
