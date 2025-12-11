@@ -8,6 +8,6 @@ Si la VM est toute neuve, lancer la commande :
 - apt install ssh
 
 puis celles-ci :
-- wget postinstalldeb13.sh https://raw.githubusercontent.com/GaryBatista/post_install_deb13/refs/heads/main/postinstalldeb13
+- wget postinstalldeb13.sh https://raw.githubusercontent.com/GaryBatista/postinstalldeb13/refs/heads/main/postinstalldeb13
 - chmod +x postinstalldeb13
 - ./postinstalldeb13.sh
