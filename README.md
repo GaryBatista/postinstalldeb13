@@ -10,4 +10,4 @@ Si la VM est toute neuve, lancer la commande :
 puis celles-ci :
 - wget postinstalldeb13.sh https://raw.githubusercontent.com/GaryBatista/postinstalldeb13/refs/heads/main/postinstalldeb13
 - chmod +x postinstalldeb13
-- ./postinstalldeb13.sh
+- ./postinstalldeb13
